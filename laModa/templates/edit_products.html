@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+{% extends 'index.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Product Details | AttireVogue | laModa</title>
+</head>
+<body>
+<div class="col-sm-12 col-xl-12">
+                        <div class="bg-secondary rounded h-800 p-4">
+                            <h6 class="mb-4">Edit Products</h6>
+                            <form method="post" action="{% url 'update_products' prod_id=prod.id %}" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <div class="mb-3">
+
+                                    <label for="exampleInputCategoryName" class="form-label">ProductName</label>
+                                    <input type="text" class="form-control" id="exampleInputCategoryName" name="ProductName" value="{{prod.ProductName}}"><br>
+
+                            <h6 class="mb-4">Select product category</h6>
+                            <select class="form-select form-select-sm mb-3" aria-label=".form-select-sm example" name="ProductCategory" >
+                                <option >{{prod.ProductCategory}}</option>
+                                {% for d in cat %}
+                                <option>{{d.CategoryName}}</option>
+                                {% endfor %}
+                            </select>
+
+                                    <label for="exampleInputDescription" class="form-label">Description</label>
+                                    <textarea  class="form-control" id="exampleInputDescription" name="description" value="{{prod.description}}"></textarea><br>
+                                    <label for="exampleInputCategoryName" class="form-label">Price</label>
+                                    <input type="number" class="form-control" id="exampleInputPrice" name="Price" value="{{prod.Price}}"><br>
+                                    <label for="exampleInputFileupload" class="form-label" >ProductImage</label>
+                                    <input type="file" name="ProductImage" id="exampleInputFileupload">
+                                    <img src="{{prod.ProductImage.url}}" width="100px" height="100px">
+                                </div>
+
+
+                                <button type="submit" class="btn btn-primary">update</button>
+                            </form>
+                        </div>
+                    </div>
+</body>
+</html>
+{% endblock %}

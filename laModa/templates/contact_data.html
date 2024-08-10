@@ -1,0 +1,48 @@
+
+<!DOCTYPE html>
+{% extends 'index.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>laModa | view contact details |</title>
+</head>
+<body>
+<div class="col-sm-12 col-xl-12">
+                        <div class="bg-secondary rounded h-100 p-4">
+                            <h6 class="mb-4">Display contact Details</h6>
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Contact Id</th>
+                                        <th>name</th>
+                                        <th>email</th>
+                                        <th>phone</th>
+                                        <th>subject</th>
+                                        <th>message</th>
+                                        <th>options</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                {% for d in data %}
+                                    <tr>
+                                        <td>{{d.id}}</td>
+                                        <td>{{d.name}}</td>
+                                        <td>{{d.email}}</td>
+                                        <td>{{d.phone}}</td>
+                                        <td>{{d.subject}}</td>
+                                        <td>{{d.message}}</td>
+                                        <td>
+                                            <a href="{% url 'contact_delete' cont_id=d.id %}">
+                                                <button type="button" class="btn btn-outline-dark m-2">Delete</button>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+</body>
+</html>
+{% endblock %}

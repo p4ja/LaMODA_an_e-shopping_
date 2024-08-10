@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+{% extends 'index.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="col-sm-12 col-xl-12">
+                        <div class="bg-secondary rounded h-800 p-4">
+                            <h6 class="mb-4">Add Category</h6>
+                            <div class="mb-3">
+                            <form method="post" action="{% url 'save_category' %}" enctype="multipart/form-data">
+                                {% csrf_token %}
+
+
+                                    <label for="exampleInputCategoryName" class="form-label">CategoryName</label>
+                                    <input type="text" class="form-control" id="exampleInputCategoryName" name="CategoryName"><br>
+                                    <label for="exampleInputDescription" class="form-label">Description</label>
+                                    <textarea  class="form-control" id="exampleInputDescription" name="Description"></textarea><br>
+                                    <label for="exampleInputFileupload" class="form-label" >fileupload</label>
+                                    <input type="file" name="Imageupload" id="exampleInputFileupload"  >
+                                </div>
+
+
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </form>
+                        </div>
+                    </div>
+
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+{% if messages %}
+    {% for i in messages %}
+      {% if i.tags == 'warning' %}
+        <script>
+        swal('{{i}}', '','warning')
+         </script>
+      {% elif i.tags == 'error' %}
+        <script>
+        swal('{{i}}', '','error')
+        </script>
+      {% elif i.tags == 'info' %}
+        <script>
+        swal('{{i}}', '','info')
+        </script>
+      {% else %}
+        <script>
+        swal('{{i}}', '','success')
+        </script>
+      {% endif %}
+    {% endfor %}
+{% endif %}
+</body>
+</html>
+{% endblock %}

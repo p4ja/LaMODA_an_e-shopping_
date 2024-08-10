@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+{% extends 'index.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Product Details | AttireVogue | laModa</title>
+</head>
+<body>
+<div class="col-sm-12 col-xl-12">
+                        <div class="bg-secondary rounded h-800 p-4">
+                            <h6 class="mb-4">Add Products</h6>
+                            <form method="post" action="{% url 'save_products' %}" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <div class="mb-3">
+
+                                    <label for="exampleInputCategoryName" class="form-label">ProductName</label>
+                                    <input type="text" class="form-control" id="exampleInputCategoryName" name="ProductName"><br>
+
+                            <h6 class="mb-4">Select product category</h6>
+                            <select class="form-select form-select-sm mb-3" aria-label=".form-select-sm example" name="ProductCategory">
+                                <option >select </option>
+                                {% for i in data %}
+                                <option>{{i.CategoryName}}</option>
+                                {% endfor %}
+
+                            </select>
+
+                                    <label for="exampleInputDescription" class="form-label">Description</label>
+                                    <textarea  class="form-control" id="exampleInputDescription" name="description"></textarea><br>
+                                    <label for="exampleInputCategoryName" class="form-label">Price</label>
+                                    <input type="number" class="form-control" id="exampleInputPrice" name="Price"><br>
+                                    <label for="exampleInputFileupload" class="form-label" >ProductImage</label>
+                                    <input type="file" name="ProductImage" id="exampleInputFileupload" >
+                                </div>
+
+
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </form>
+                        </div>
+                    </div>
+</body>
+</html>
+{% endblock %}
